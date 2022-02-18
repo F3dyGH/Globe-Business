@@ -43,4 +43,12 @@ public class Employee {
     @Column(name = "image")
     private String image;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profession_id")
+    private Profession profession;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
 }

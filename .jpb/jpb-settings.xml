@@ -4,7 +4,8 @@
     <option name="entityNameTemplate" />
     <option name="isLombokGetterAndSetter" value="true" />
     <option name="isLombokToString" value="true" />
-    <option name="isLombokRequiredArgsConstructor" value="true" />
+    <option name="isLombokAllArgsConstructor" value="true" />
+    <option name="isLombokNoArgsConstructor" value="true" />
     <option name="scaffoldingLanguage" />
   </component>
 </project>

@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,9 +18,6 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "domain")
-    private String domain;
 
     @Column(name = "name")
     private String name;
@@ -34,5 +33,13 @@ public class Company {
 
     @Column(name = "image")
     private String image;
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "domain_id")
+    private Domain domain;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Employee> employees = new ArrayList<>();
 
 }
