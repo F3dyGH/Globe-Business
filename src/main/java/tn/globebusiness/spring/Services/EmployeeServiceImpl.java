@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements IEmployeeService{
         employee.setEmail(newEmployee.getEmail());
         employee.setGender(newEmployee.getGender());
         employee.setPhone(newEmployee.getPhone());
-        return er.save(employee);//Error changes apply only in the first modification, updating for the second times results an error in the api tester
+        return er.save(employee);//Error changes apply only in the first modification, updating for the second time results an error in the api tester
     }
 
     @Override
