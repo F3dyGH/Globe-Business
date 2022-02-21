@@ -11,19 +11,28 @@ public class EmployeeServiceImpl implements IEmployeeService{
     EmployeeRepository er;
 
     @Override
-    public Employee UpdateEmployee(String employeeName,Employee employee,Employee newEmployee) {
-        employee  = er.findByName(employeeName);
-        employee.setName(newEmployee.getName());
-        employee.setLastName(newEmployee.getLastName());
-        employee.setBirthday(newEmployee.getBirthday());
-        employee.setEmail(newEmployee.getEmail());
-        employee.setGender(newEmployee.getGender());
-        employee.setPhone(newEmployee.getPhone());
-        return er.save(employee);//Error changes apply only in the first modification, updating for the second time results an error in the api tester
+    public Employee UpdateEmployee(String employeeName, Employee newEmployee) throws Exception {
+        Employee employee  = er.findByName(employeeName);
+            if(employee!=null) {
+                employee.setName(newEmployee.getName());
+                employee.setLastName(newEmployee.getLastName());
+                employee.setBirthday(newEmployee.getBirthday());
+                employee.setEmail(newEmployee.getEmail());
+                employee.setGender(newEmployee.getGender());
+                employee.setPhone(newEmployee.getPhone());
+            }
+            else{ throw new Exception("Employee not found"); }
+        return er.save(employee);
     }
 
     @Override
-    public Employee DisplayEmployeeData(String name) {
-        return er.findByName(name);
+    public Employee DisplayEmployeeData(String name) throws Exception {
+        if(er.findByName(name)!=null) {
+            return er.findByName(name);
+        }
+        else {
+            throw new Exception("Employee not found");
+        }
     }
+
 }

@@ -14,16 +14,11 @@ public class EmployeeRestController {
     EmployeeRepository er;
 
     @PutMapping("/{name}/edit")
-    public Employee edit(@PathVariable("name") String name,Employee employee,@RequestBody Employee newEmployee){
-        return ies.UpdateEmployee(name,employee,newEmployee);////Error changes apply only in the first modification, updating for the second time results an error in the api tester
+    public Employee edit(@PathVariable("name") String name,@RequestBody Employee newEmployee) throws Exception {
+        return ies.UpdateEmployee(name,newEmployee);
     }
     @GetMapping ("/{name}")
-    public Employee display(@PathVariable("name") String name){
+    public Employee display(@PathVariable("name") String name) throws Exception {
         return ies.DisplayEmployeeData(name);
     }
-    /*@GetMapping ("/{name}")
-    public Employee display(@PathVariable("name") String name){
-        //Employee emp = er.findByName(name);
-        return er.findByName(name);
-    }*/
 }
