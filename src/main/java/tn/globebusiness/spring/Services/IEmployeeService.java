@@ -4,5 +4,7 @@ import tn.globebusiness.spring.Entities.Employee;
 
 public interface IEmployeeService {
 
-    Employee UpdateEmployee(Employee employee);
+    public Employee UpdateEmployee(String employeeName, Employee employee, Employee newEmployee);
+
+    public Employee DisplayEmployeeData(String name);
 }
