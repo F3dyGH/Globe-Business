@@ -1,7 +1,7 @@
 package tn.globebusiness.spring.service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import tn.globebusiness.spring.entity.Event;
 
@@ -10,7 +10,8 @@ public interface IEventService {
 	public Event addEvent(Event event);
 	public Event updateEvent(Event event);
 	public void deleteEvent(int eventId);
-	public Optional<Event> listEvent(int eventId);
+	public Event listEvent(int eventId);
+	public Event listEvent(String eventDate);
 	public List<Event> listAllEvents();
 
 }

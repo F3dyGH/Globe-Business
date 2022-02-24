@@ -1,7 +1,7 @@
 package tn.globebusiness.spring.service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class EventServiceImpl implements IEventService {
 
 	@Override
 	public void deleteEvent(int eventId) {
-		eventRepository.deleteById(eventId);
+		eventRepository.delete(eventRepository.findById(eventId).get());
 	}
 
 	@Override
@@ -36,8 +36,13 @@ public class EventServiceImpl implements IEventService {
 	}
 
 	@Override
-	public Optional<Event> listEvent(int eventId) {
-		return eventRepository.findById(eventId);
+	public Event listEvent(int eventId) {
+		return eventRepository.findById(eventId).orElse(new Event());
+	}
+	
+	@Override
+	public Event listEvent(String categoryDate) {
+		return eventRepository.findByStartDate(categoryDate).get(0);
 	}
 
 }

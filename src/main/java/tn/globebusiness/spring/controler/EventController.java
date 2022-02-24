@@ -1,7 +1,7 @@
 package tn.globebusiness.spring.controler;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.globebusiness.spring.entity.Event;
@@ -27,9 +26,14 @@ public class EventController {
 		eventService.addEvent(event);
 	}
 	
-	@GetMapping("ListEvent/{enentId}")
-	public Optional<Event> ListEvent(@PathVariable("eventId") Integer eventId) {
+	@GetMapping("ListEvent/{eventId}")
+	public Event ListEvent(@PathVariable("eventId") Integer eventId) {
 		return eventService.listEvent(eventId);
+	}
+	
+	@GetMapping("ListEventByDate/{eventDate}")
+	public Event ListEventByDate(@PathVariable("eventDate") String eventDate) {
+		return eventService.listEvent(eventDate);
 	}
 
 	@PutMapping("updateEvent")
@@ -38,7 +42,7 @@ public class EventController {
 	}
 	
 	@DeleteMapping("deleteEvent/{eventId}")
-	public boolean deleteEvent(@PathVariable Integer eventId) {
+	public boolean deleteEvent(@PathVariable("eventId") Integer eventId) {
 		eventService.deleteEvent(eventId);
 		
 		return true;

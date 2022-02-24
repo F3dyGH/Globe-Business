@@ -35,13 +35,13 @@ public class Event implements Serializable {
 	Integer eventId;
 	@Temporal(TemporalType.DATE)
 	Date startDate;
-	@Temporal(TemporalType.DATE)
-	Date duration;
+	String duration;
 	String description;
 	String title;
 	String location;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	List<Category> category;
+	List<Category> categories;
+	
 	
 }

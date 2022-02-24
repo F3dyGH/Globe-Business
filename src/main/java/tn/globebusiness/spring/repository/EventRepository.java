@@ -1,5 +1,6 @@
 package tn.globebusiness.spring.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -10,8 +11,8 @@ import tn.globebusiness.spring.entity.Event;
 
 @Repository
 public interface EventRepository extends CrudRepository<Event, Integer> {
-	
-	@Query("select e from Event e where e.eventId=?1")
-	Event ListEvent (Integer eventId);
 
+	//@Query("Select e from event e where e.startDate=:categoryDate")
+	public List<Event> findByStartDate(String categoryDate);
+	
 }
