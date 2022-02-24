@@ -2,12 +2,12 @@ package tn.globebusiness.spring.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,7 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
-@Table(name="Travel")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,16 +23,15 @@ import lombok.Setter;
 public class Travel {
 	@Id 
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id ;
+	private long id ;
+	
 	@Temporal(TemporalType.DATE)
-	@Column(name="date")
 	private Date date ;
-	@Column(name="destination")
+	
 	private String destination ;
-	@Column(name="duration")
+
 	private int duration ;
-	@Column(name="objective")
+
 	private String objective ;
 
 }
