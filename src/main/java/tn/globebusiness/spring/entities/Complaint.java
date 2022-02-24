@@ -31,7 +31,7 @@ public class Complaint {
 	private String description;
 	@Temporal(TemporalType.DATE)
 	Date feedbackDate;
-	@Temporal(TemporalType.TIME)
-	Date feedbackHour;
+	/*@Temporal(TemporalType.TIME)
+	Date feedbackHour;*/
 
 }
