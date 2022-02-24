@@ -1,6 +1,7 @@
 package tn.globebusiness.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,9 +33,19 @@ public class TravelService implements ITravelService {
 	}
 
 	@Override
-	public void UpdateTravel(Travel travel) {
-		travelrep.save(travel);
+	public void UpdateTravel(Travel travel,long id) {
+		Travel t = travelrep.getById(id);
+		t.setDate(travel.getDate());
+		t.setDestination(travel.getDestination());
+		t.setDuration(travel.getDuration());
+		t.setObjective(travel.getObjective());
+		travelrep.save(t);
 		
+	}
+
+	@Override
+	public Optional<Travel> retrieveTravelById(long id) {
+		return travelrep.findById(id);
 	}
 
 }
