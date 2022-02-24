@@ -14,17 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @ToString
 @Entity
-@Table(name = "domain")
 public class Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "domain", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "domain")
     private List<Company> companies = new ArrayList<>();
 
 }

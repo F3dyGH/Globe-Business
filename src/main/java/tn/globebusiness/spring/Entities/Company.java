@@ -16,26 +16,20 @@ import java.util.List;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
     private Long phone;
 
-    @Column(name = "image")
     private String image;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "domain_id")
     private Domain domain;
 

@@ -16,10 +16,8 @@ import java.util.List;
 public class Profession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "profession", cascade = CascadeType.ALL)
