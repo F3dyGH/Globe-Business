@@ -12,8 +12,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+
+
 
 @Entity
 @Getter
@@ -21,7 +22,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Category implements Serializable {
 	
