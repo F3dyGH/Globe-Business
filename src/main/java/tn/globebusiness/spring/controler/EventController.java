@@ -1,6 +1,5 @@
 package tn.globebusiness.spring.controler;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +28,6 @@ public class EventController {
 	@GetMapping("ListEvent/{eventId}")
 	public Event ListEvent(@PathVariable("eventId") Integer eventId) {
 		return eventService.listEvent(eventId);
-	}
-	
-	@GetMapping("ListEventByDate/{eventDate}")
-	public Event ListEventByDate(@PathVariable("eventDate") String eventDate) {
-		return eventService.listEvent(eventDate);
 	}
 
 	@PutMapping("updateEvent")

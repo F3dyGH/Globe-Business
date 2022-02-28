@@ -10,7 +10,7 @@ import tn.globebusiness.spring.entity.Category;
 @Repository
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
 
-	// @Query("Select c from category c where c.name=:categoryName")
+	
 	    public List<Category> findByName(String categoryName);
 
 }

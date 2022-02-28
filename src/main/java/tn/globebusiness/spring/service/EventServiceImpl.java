@@ -1,6 +1,5 @@
 package tn.globebusiness.spring.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +37,6 @@ public class EventServiceImpl implements IEventService {
 	@Override
 	public Event listEvent(int eventId) {
 		return eventRepository.findById(eventId).orElse(new Event());
-	}
-	
-	@Override
-	public Event listEvent(String categoryDate) {
-		return eventRepository.findByStartDate(categoryDate).get(0);
 	}
 
 }
