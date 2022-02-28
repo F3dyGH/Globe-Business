@@ -1,6 +1,9 @@
 package tn.globebusiness.spring.Services;
 
 import tn.globebusiness.spring.Entities.Employee;
+import tn.globebusiness.spring.Entities.Post;
+
+import java.util.List;
 
 public interface IEmployeeService {
 
@@ -9,4 +12,8 @@ public interface IEmployeeService {
     public Employee UpdateEmployee(String employeeName, Employee newEmployee) throws Exception;
 
     public Employee DisplayEmployeeData(String name) throws Exception;
+
+    //public List<Post> DisplayPostHistory(/*String name,*/ Long id) throws Exception;
+
+    public List<Post> DisplayPostHistory(String name, Long id) throws Exception;
 }

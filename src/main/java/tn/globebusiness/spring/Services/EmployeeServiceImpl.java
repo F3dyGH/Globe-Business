@@ -3,13 +3,19 @@ package tn.globebusiness.spring.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.globebusiness.spring.Entities.Employee;
+import tn.globebusiness.spring.Entities.Post;
 import tn.globebusiness.spring.Repositories.EmployeeRepository;
+import tn.globebusiness.spring.Repositories.PostRepository;
+
+import java.util.List;
+
 
 @Service
 public class EmployeeServiceImpl implements IEmployeeService{
     @Autowired
     EmployeeRepository er;
-
+    @Autowired
+    PostRepository pr;
     @Override
     public Employee UpdateEmployee(String employeeName, Employee newEmployee) throws Exception {
         Employee employee  = er.findByName(employeeName);
@@ -35,4 +41,14 @@ public class EmployeeServiceImpl implements IEmployeeService{
         }
     }
 
-}
+    @Override
+    public List<Post> DisplayPostHistory(String name, Long id) throws Exception {
+        Employee employee = er.findByName(name) ;
+        List<Post> posts = pr.findByPosts(employee.getId());
+            if ( posts.isEmpty() ){
+                throw new Exception("No posts yet for this employee");
+            }else {
+                return posts;
+            }
+        }
+    }
