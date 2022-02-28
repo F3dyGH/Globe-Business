@@ -16,7 +16,9 @@ public class EventServiceImpl implements IEventService {
 
 	@Override
 	public Event addEvent(Event event) {
-		return eventRepository.save(event);
+		List<Event> listOfEvents = listAllEvents();
+		if(!listOfEvents.contains(event)) return eventRepository.save(event);
+		return null;
 	}
 
 	@Override
@@ -38,5 +40,12 @@ public class EventServiceImpl implements IEventService {
 	public Event listEvent(int eventId) {
 		return eventRepository.findById(eventId).orElse(new Event());
 	}
+
+	/*@Override
+	public Event listEventByCategory(String category) {
+		Event event = eventRepository.findByCategory(category);
+		if(event != null) return event;
+		return null;
+	}*/
 
 }

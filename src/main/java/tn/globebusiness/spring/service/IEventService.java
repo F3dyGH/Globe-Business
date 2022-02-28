@@ -10,6 +10,7 @@ public interface IEventService {
 	public Event updateEvent(Event event);
 	public void deleteEvent(int eventId);
 	public Event listEvent(int eventId);
+	//public Event listEventByCategory(String category);
 	
 	public List<Event> listAllEvents();
 

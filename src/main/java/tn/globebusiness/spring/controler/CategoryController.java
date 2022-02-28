@@ -32,12 +32,12 @@ public class CategoryController {
 	}
 	
 	@GetMapping("ListAllCategories")
-	public List<Category> ListAllCategories(){
+	public List<Category> listAllCategories(){
 		return categoryService.listAllCategories();
 	}
 	
 	@GetMapping("ListCategory/{categoryName}")
-	public Category ListCategory(@PathVariable("categoryName") String categoryName) {
+	public Category listCategory(@PathVariable("categoryName") String categoryName) {
 		return categoryService.listCategory(categoryName);
 	}
 }

@@ -26,7 +26,7 @@ public class EventController {
 	}
 	
 	@GetMapping("ListEvent/{eventId}")
-	public Event ListEvent(@PathVariable("eventId") Integer eventId) {
+	public Event listEvent(@PathVariable("eventId") Integer eventId) {
 		return eventService.listEvent(eventId);
 	}
 
@@ -42,7 +42,7 @@ public class EventController {
 	}
 	
 	@GetMapping("ListAllEvents")
-	public List<Event> ListAllEvents(){
+	public List<Event> listAllEvents(){
 		return eventService.listAllEvents();
 	}
 }
