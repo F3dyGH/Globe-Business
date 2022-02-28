@@ -27,11 +27,6 @@ public class EmployeeRestController {
     }
     @GetMapping("/{name}/posts")
     public List<Post> DisplayPosts(@PathVariable("name")  String name,Long employeeId) throws Exception {
-       /* if (er.findByName(name).getId() == id) {*/
             return ies.DisplayPostHistory(name,employeeId);
-        /*}
-        else {
-            return  null;
-        }*/
    }
 }
