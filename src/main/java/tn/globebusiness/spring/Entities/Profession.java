@@ -16,11 +16,17 @@ import java.util.List;
 public class Profession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
     private String name;
 
     @OneToMany(mappedBy = "profession", cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
 
 }
