@@ -28,7 +28,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    @JsonBackReference
+    @JsonBackReference("employee_post")
     private Employee employee;
 
 }

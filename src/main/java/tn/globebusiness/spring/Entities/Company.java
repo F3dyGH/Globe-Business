@@ -1,5 +1,7 @@
 package tn.globebusiness.spring.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -33,8 +35,10 @@ public class Company {
     @JoinColumn(name = "domain_id")
     private Domain domain;
 
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Profession> professions = new ArrayList<>();

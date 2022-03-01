@@ -1,5 +1,6 @@
 package tn.globebusiness.spring.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,10 +22,11 @@ public class Profession {
 
     private String name;
 
+   // @JsonBackReference
     @OneToMany(mappedBy = "profession", cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
 
-
+    @JsonBackReference(value = "company_professions")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id")
     private Company company;

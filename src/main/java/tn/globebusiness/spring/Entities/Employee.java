@@ -1,5 +1,6 @@
 package tn.globebusiness.spring.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Employee {
 
     private String lastName;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date birthday;
 
     private String email;
@@ -37,10 +38,12 @@ public class Employee {
 
     private String image;
 
+    @JsonBackReference(value = "employee_profession")
     @ManyToOne
     @JoinColumn(name = "profession_id")
     private Profession profession;
 
+    @JsonBackReference(value = "employee_company")
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
