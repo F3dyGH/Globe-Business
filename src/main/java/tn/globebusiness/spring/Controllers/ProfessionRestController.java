@@ -10,18 +10,18 @@ import java.util.List;
 @RestController
 public class ProfessionRestController {
     @Autowired
-    IProfessionService ipr;
+    IProfessionService ips;
     @PostMapping("/professions/add")
     public Profession addProfession(@RequestBody Profession profession){
-        return ipr.addProfession(profession);
+        return ips.addProfession(profession);
     }
     @PutMapping("/professions/{name}/edit")
     public Profession updateProfession(@PathVariable("name") String name, @RequestBody Profession profession) throws Exception {
-        return ipr.updateProfession(name, profession);
+        return ips.updateProfession(name, profession);
     }
     @DeleteMapping("/professions/{name}/delete")
     public void deleteProfession(@PathVariable("name") String name) throws Exception {
-        ipr.deleteProfession(name);
+        ips.deleteProfession(name);
     }
 
 }
