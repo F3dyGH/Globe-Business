@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,7 +27,12 @@ public class Travel {
 	@Temporal(TemporalType.DATE)
 	private Date date ;
 	private String destination ;
+	private String state;
+	private String city;
 	private int duration ;
 	private String objective ;
+	
+	@ManyToOne
+	private Company company;
 
 }
