@@ -54,5 +54,42 @@ public class TravelController {
 		return itravelserv.retrieveTravelById(id);
 		
 	}
+	
+	@GetMapping("/findbydestination/{destination}")
+	@ResponseBody
+	public List<Travel>findBydestination(@PathVariable String destination){
+		return itravelserv.findBydestination(destination);
+		
+	}
+	
+	@GetMapping("/findbystate/{state}")
+	@ResponseBody
+	public List<Travel>findBystate(@PathVariable String state){
+		return itravelserv.findBystate(state);
+		
+	}
+	
+	@GetMapping("/findbycity/{city}")
+	@ResponseBody
+	public List<Travel>findBycity(@PathVariable String city){
+		return itravelserv.findBycity(city);
+		
+	}
+	
+	@GetMapping("/findbydeststate/{destination}/{state}")
+	@ResponseBody
+	public List<Travel>findBydestinationAndState(@PathVariable String destination ,@PathVariable String state){
+		return itravelserv.findBydestinationAndState(destination, state);
+		
+	}
+
+	
+	@GetMapping("/findbydeststatecity/{destination}/{state}/{city}")
+	@ResponseBody
+	public List<Travel>findBydestinationAndStateAndcity(@PathVariable String destination ,@PathVariable String state,@PathVariable String city){
+		return itravelserv.findBydestinationAndStateAndCity(destination, state, city);
+		
+	}
+
 
 }

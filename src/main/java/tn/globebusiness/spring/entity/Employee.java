@@ -50,5 +50,8 @@ public class Employee {
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "employee")
     private List<Post> posts = new ArrayList<>();
+    
+    @OneToOne(mappedBy="employee")
+    private Travel travel;
 
 }

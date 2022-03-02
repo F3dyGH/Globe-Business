@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,14 +26,16 @@ public class Travel {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id ;
 	@Temporal(TemporalType.DATE)
-	private Date date ;
+	private Date date_begin ;
 	private String destination ;
 	private String state;
 	private String city;
-	private int duration ;
+	private Date date_end ;
 	private String objective ;
 	
 	@ManyToOne
 	private Company company;
+	@OneToOne
+	private Employee employee ;
 
 }
