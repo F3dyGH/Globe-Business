@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.pidev.spring.entities.Comment;
 import tn.pidev.spring.entities.Employee;
-import tn.pidev.spring.entities.Like;
+import tn.pidev.spring.entities.Likee;
 import tn.pidev.spring.entities.Post;
+import tn.pidev.spring.repositories.CommentRepository;
 import tn.pidev.spring.repositories.EmployeeRepository;
 import tn.pidev.spring.repositories.LikeRepositoy;
 import tn.pidev.spring.repositories.PostRepository;
@@ -21,6 +23,8 @@ public class PostService implements IPostService {
 	EmployeeRepository er;
 	@Autowired
 	LikeRepositoy lr;
+	@Autowired
+	CommentRepository cr;
 	@Override
 	public void addPost(Long idEmployee, Post post) {
 		Employee employee=er.findById(idEmployee).get();
@@ -41,6 +45,7 @@ public class PostService implements IPostService {
 		}
 	}
 	@Override
+	
 	public void editPost(Post post) {
 		pr.save(post);
 	}
@@ -50,11 +55,94 @@ public class PostService implements IPostService {
 		return er.findById(idEmployee).get().getPosts();
 	}
 	@Override
-	public void addLike(Long idEmployee, Long idPost) {
-		Like like=new Like();
-		like.setPost(pr.findById(idPost).get());
-		like.setEmployee(er.findById(idEmployee).get());
-		lr.save(like);
+	public void addLikeDislike(Long idEmployee, Long idPost) {
+		
+		Likee like=lr.findByIdEmployeeIdPost(er.findById(idEmployee).orElse(new Employee()), pr.findById(idPost).orElse(new Post())).orElse(new Likee())    ;
+		if(like.getId()==null){
+			like.setPost(pr.findById(idPost).get());
+			like.setEmployee(er.findById(idEmployee).get());
+			like.setDateLike(new Date());
+			lr.save(like);
+		}
+		else{
+			lr.delete(like);
+		}
 	}
+	@Override
+	public int likeNumberByPost(Long idPost) {
+		Post post=pr.findById(idPost).orElse(new Post());
+		if(post.getIdPost()==null){
+			return -1;
+		}
+		return lr.likeNumberByPost(post);
+	}
+	@Override
+	public Post postMaxLike() {
+		List<Post> allPosts=(List<Post>)pr.findAll();
+		int nbrLike=0;
+		Post post=new Post();
+		if(!allPosts.isEmpty()){
+			for(Post p:allPosts){
+				if(p.getLikes().size()>nbrLike){
+					nbrLike=p.getLikes().size();
+					post=p;
+				}
+			}
+		}
+		return post;
+	}
+	@Override
+	public List<Post> trierPostByDate() {
+		List<Post> allPosts=(List<Post>)pr.findAll();
+		if(!allPosts.isEmpty()){
+			allPosts.sort((p1,p2) -> -(p1.getDatePost().compareTo(p2.getDatePost())));
+		}
+		return allPosts;
+	}
+	@Override
+	public List<Post> trierPostByNbrLike() {
+		List<Post> allPosts=(List<Post>)pr.findAll();
+		if(!allPosts.isEmpty()){
+			allPosts.sort((p1,p2) -> -(p1.getLikes().size()-p2.getLikes().size()));
+		}
+		return allPosts;
+	}
+	@Override
+	public Comment addComment(Long idEmployee, Long idPost,Comment comment) {
+		comment.setEmployee(er.findById(idEmployee).get());
+		comment.setPost(pr.findById(idPost).get());
+		comment.setDatePost(new Date());
+		return cr.save(comment);
+	}
+	@Override
+	public Comment deleteComment(Long idComment, Long idEmployee) {
+		Comment comm=cr.findById(idComment).orElse(new Comment());
+		Employee employee=er.findById(idEmployee).orElse(new Employee());
+		if(comm.getEmployee()==employee){
+			cr.delete(comm);
+		}
+		return comm;
+	}
+	@Override
+	public Comment updateComment(Long idComment, Long idEmployee, Comment comment) {
+		Comment commTest=cr.findById(idComment).orElse(new Comment());
+		System.out.println(commTest.getComm()+commTest.getDatePost()+" "+ commTest.getEmployee().getEmail());
+		Employee employee=er.findById(idEmployee).orElse(new Employee());
+		System.out.println(employee.getEmail());
+		if(commTest.getEmployee()==employee){
+			comment.setIdComment(commTest.getIdComment());
+			comment.setDatePost(commTest.getDatePost());
+			comment.setEmployee(commTest.getEmployee());
+			comment.setPost(commTest.getPost());
+			System.out.println("yesssssss");
+		}
+		return cr.save(comment);
+	}
+	
+	
+	
+	
+	
+	
 	
 }

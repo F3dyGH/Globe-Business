@@ -2,7 +2,7 @@ package tn.pidev.spring.services;
 
 import java.util.List;
 
-import tn.pidev.spring.entities.Like;
+import tn.pidev.spring.entities.Comment;
 import tn.pidev.spring.entities.Post;
 
 public interface IPostService {
@@ -11,5 +11,13 @@ public interface IPostService {
 	void deletePost(Long id,Long idEmployee);
 	void editPost(Post post);
 	List<Post> getMayPosts(Long idEmployee);
-	void addLike(Long idEmployee, Long idPost);
+	void addLikeDislike(Long idEmployee, Long idPost);
+	int likeNumberByPost(Long idPost);
+	Post postMaxLike();
+	List<Post> trierPostByDate();
+	List<Post> trierPostByNbrLike();
+	
+	Comment addComment(Long idEmployee,Long idPost,Comment comment);
+	Comment deleteComment(Long idComment,Long idEmployee);
+	Comment updateComment(Long idComment,Long idEmployee,Comment comment);
 }

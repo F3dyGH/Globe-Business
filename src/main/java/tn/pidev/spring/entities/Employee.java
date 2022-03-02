@@ -22,6 +22,6 @@ public class Employee implements Serializable {
 	private String email;
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="employee")
 	private List<Post> posts;
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="employee")
-	private List<Like> likes;
+	
+	
 }

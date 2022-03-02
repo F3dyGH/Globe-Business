@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.pidev.spring.entities.Comment;
+import tn.pidev.spring.entities.Likee;
 import tn.pidev.spring.entities.Post;
+import tn.pidev.spring.repositories.LikeRepositoy;
 import tn.pidev.spring.services.IPostService;
 
 @RestController
 public class PostRestController  {
 	@Autowired
 	IPostService ips;
+	@Autowired 
+	LikeRepositoy lr;
 	@PostMapping("addPost")
 	public void addPost(@RequestParam("idEmployee") Long idEmployee, @RequestBody Post post){
 		ips.addPost(idEmployee,post);	
@@ -40,9 +45,50 @@ public class PostRestController  {
 		return ips.getMayPosts(idEmployee);
 	}
 	
-	@PostMapping("addLike")
-	public void addLike(@RequestParam("idEmployee") Long idEmployee,@RequestParam("idPost")Long idPost){
-		ips.addLike(idEmployee, idPost);
+	@PostMapping("addLikeDislike")
+	public void addLikeDislike(@RequestParam("idEmployee") Long idEmployee,@RequestParam("idPost")Long idPost){
+		ips.addLikeDislike(idEmployee, idPost);
 	}
+	@GetMapping("getLike")
+	public Likee getLike(@RequestParam("idLike") Long idLike){
+		return lr.findById(idLike).orElse(new Likee());
+	}
+	
+	@GetMapping("likeNumberByPost")
+	public int likeNumberByPost(@RequestParam("idPost") Long idPost){
+		return ips.likeNumberByPost(idPost);
+	}
+	@GetMapping("postMaxLike")
+	public Post postMaxLike(){
+		return ips.postMaxLike();
+	}
+	
+	@GetMapping("trierPostByDate")
+	public List<Post> trierPostByDate(){
+		return ips.trierPostByDate();
+	}
+	
+	@GetMapping("trierPostByNbrLike")
+	public List<Post> trierPostByNbrLike(){
+		return ips.trierPostByDate();
+	}
+	
+	@PostMapping("addComment")
+	public Comment addComment(@RequestParam("idEmployee") Long idEmployee,@RequestParam("idPost") Long idPost,@RequestBody Comment comm)     {
+		return ips.addComment(idEmployee, idPost,comm);
+	}
+	
+	@DeleteMapping("deleteComment")
+	public Comment deleteComment(@RequestParam("idComment")Long idComment,@RequestParam Long idEmployee){
+		return ips.deleteComment(idComment, idEmployee);
+	}
+	@PutMapping("updateComment")
+	public Comment updateComment(@RequestParam("idComment") Long idComment,@RequestParam("idEmployee") Long idEmployee,@RequestBody Comment comm){
+		return ips.updateComment(idComment, idEmployee, comm);
+	}
+	
+	
+	
+	
 	
 }

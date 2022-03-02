@@ -3,9 +3,8 @@ package tn.pidev.spring.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tn.pidev.spring.entities.Post;
-
+import tn.pidev.spring.entities.Comment;
 @Repository
-public interface PostRepository extends CrudRepository<Post,Long> {
-	//@Query("select p from Post p where ")
+public interface CommentRepository extends CrudRepository<Comment,Long> {
+
 }
