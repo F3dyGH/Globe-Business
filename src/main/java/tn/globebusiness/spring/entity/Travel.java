@@ -24,14 +24,10 @@ public class Travel {
 	@Id 
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id ;
-	
 	@Temporal(TemporalType.DATE)
 	private Date date ;
-	
 	private String destination ;
-
 	private int duration ;
-
 	private String objective ;
 
 }
