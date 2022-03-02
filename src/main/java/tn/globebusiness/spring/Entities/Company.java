@@ -35,7 +35,6 @@ public class Company {
     @JoinColumn(name = "domain_id")
     private Domain domain;
 
-
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
 
