@@ -126,15 +126,12 @@ public class PostService implements IPostService {
 	@Override
 	public Comment updateComment(Long idComment, Long idEmployee, Comment comment) {
 		Comment commTest=cr.findById(idComment).orElse(new Comment());
-		System.out.println(commTest.getComm()+commTest.getDatePost()+" "+ commTest.getEmployee().getEmail());
 		Employee employee=er.findById(idEmployee).orElse(new Employee());
-		System.out.println(employee.getEmail());
 		if(commTest.getEmployee()==employee){
 			comment.setIdComment(commTest.getIdComment());
 			comment.setDatePost(commTest.getDatePost());
 			comment.setEmployee(commTest.getEmployee());
 			comment.setPost(commTest.getPost());
-			System.out.println("yesssssss");
 		}
 		return cr.save(comment);
 	}

@@ -24,7 +24,7 @@ public class FollowRestController {
 		
 	}
 	
-	@PutMapping("deleteFollow")
+	@PutMapping("acceptFollow")
 	public void acceptFollow(@RequestParam("idFollow")Long idFollow){
 	      ifs.acceptFollow(idFollow);
 		

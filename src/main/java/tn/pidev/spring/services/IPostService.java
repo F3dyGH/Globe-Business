@@ -11,6 +11,8 @@ public interface IPostService {
 	void deletePost(Long id,Long idEmployee);
 	void editPost(Post post);
 	List<Post> getMayPosts(Long idEmployee);
+	
+	
 	void addLikeDislike(Long idEmployee, Long idPost);
 	int likeNumberByPost(Long idPost);
 	Post postMaxLike();
