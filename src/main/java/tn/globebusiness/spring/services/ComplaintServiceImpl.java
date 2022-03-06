@@ -1,6 +1,7 @@
 package tn.globebusiness.spring.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import tn.globebusiness.spring.entities.Complaint;
@@ -20,9 +21,14 @@ public class ComplaintServiceImpl implements IComplaintService {
 	}
 	
 	@Override
-	public Optional<Complaint> displayComplaint(Long id) throws Exception {
-        if(cr.findById(id)!=null) {
-            return cr.findById(id);
+	public void deleteComplaint(Long idC){
+		cr.deleteById(idC);
+	}
+	
+	@Override
+	public Optional<Complaint> displayComplaint(Long idC) throws Exception {
+        if(cr.findById(idC)!=null) {
+            return cr.findById(idC);
         }
         else {
             throw new Exception("Complaint can not be found !");
@@ -33,5 +39,11 @@ public class ComplaintServiceImpl implements IComplaintService {
 		return (List<Complaint>) cr.findAll();
 	}
 
+	public List<Complaint> findByTitle (String Title){
+		return (List<Complaint>) cr.findByTitle(Title);
+		
+	
+		
+	}
 }
 

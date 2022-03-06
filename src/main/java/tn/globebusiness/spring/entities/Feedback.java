@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,20 +21,17 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class Complaint {
+public class Feedback {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idC")
-	private Long idC;
-	private String title;
-	private String description;
+	@Column(name="idF")
+	private Long idF;
+	private String content;
+	private Integer rating;
 	@Temporal(TemporalType.TIMESTAMP)
-	Date complaintDateAndTime;
-	/*@Temporal(TemporalType.TIME)
-	Date feedbackHour;*/
-	
+	Date feedbackDateAndTime;
+
 	/*@ManyToOne
 	@JsonIgnore
-	private Company company;*/
-
+	private Employee employee;*/
 }

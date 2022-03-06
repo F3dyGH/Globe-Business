@@ -12,14 +12,22 @@ import java.util.Optional;
 public class ComplaintRestController {
     @Autowired
     IComplaintService ics;
+    
     @PostMapping("/complaint")
     public Complaint addComplaint(@RequestBody Complaint complaint) throws Exception{
         return ics.addComplaint(complaint);
     }
-    @GetMapping("/my-complaints/{id}")
-    public Optional<Complaint> displayComplaint(@PathVariable("id") Long id) throws Exception{
-        return ics.displayComplaint(id);
+    
+    @DeleteMapping("/delete-complaint/{idc}")
+    public void deleteComplaint(@PathVariable ("idc") Long idc){
+    	ics.deleteComplaint(idc);
     }
+    
+    @GetMapping("/my-complaints/{idc}")
+    public Optional<Complaint> displayComplaint(@PathVariable("idc") Long idc) throws Exception{
+        return ics.displayComplaint(idc);
+    }
+    
     @GetMapping("/my-complaints")
     public List<Complaint> displayAllUserComplaints(){
         return ics.displayAllUserComplaints();
