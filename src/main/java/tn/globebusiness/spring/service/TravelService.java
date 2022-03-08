@@ -2,11 +2,13 @@ package tn.globebusiness.spring.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import tn.globebusiness.spring.entity.Employee;
@@ -57,16 +59,19 @@ public class TravelService implements ITravelService {
 		return travelrep.findById(id);
 	}
 
-	// This function triggers when today's date surpasses tarvel's last day 
+	//every day at 10am this function triggers to delete expired travel
+	@Scheduled(cron = "0 0 10 * * *",zone="Africa/Tunis")
 	@Override
-	public void Autodeletetravel(long id) {
-		Travel t = travelrep.getById(id);
+	public void Autodeletetravel() {
+		List<Travel> travels = travelrep.findAll();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDate date = LocalDate.parse((CharSequence) t.getDate_end(), formatter);
-		LocalDate today = LocalDate.now();
-		if(today.isAfter(date)){
-			travelrep.deleteById(id);
-			
+		for(Travel t:travels){
+			LocalDate date = LocalDate.parse((CharSequence) t.getDate_end(), formatter);
+			LocalDate today = LocalDate.now();
+			if(today.isAfter(date)){
+				travelrep.deleteById(t.getId());
+				
+			}
 		}
 		
 	}
@@ -97,15 +102,18 @@ public class TravelService implements ITravelService {
 	}
 
 	@Override
-	public void affecttraveler(long id ,long id2) {
+	public void Affecttraveler(long id ,long id2) {
 		Travel t = travelrep.getById(id);
 		Employee e = emprep.getById(id2);
 		t.setEmployee(e);
+		e.setTravel(t);
 		travelrep.save(t);
+		emprep.save(e);
 		
 		
 	}
 
+	//add and affect at same time
 	@Override
 	public void AddandAffectTravel(Travel travel, long id) {
 		Travel t = new Travel();
@@ -117,12 +125,55 @@ public class TravelService implements ITravelService {
 		t.setObjective(travel.getObjective());
 		Employee e = emprep.getById(id);
 		t.setEmployee(e);
+		e.setTravel(t);
+		emprep.save(e);
 		travelrep.save(t);
 	}
 
-	/*@Override
-	public List<Travel> findAllTravelbydate(Date date_begin) {
-		return travelrep.fi;
-	}*/
+	//compared to today's date
+	@Override
+	public List<Travel> findAllTravelbydate() {
+		return (List<Travel>) travelrep.findAllTravelbydate();
+	}
+	
+	
+
+	//MATCHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG!!!!!!!!!!!
+	@Override
+	public List<Employee> Matching(long id) {
+		List<Employee> matchedemp = new ArrayList<Employee>() ;
+		Employee user = emprep.getById(id);
+		Travel travel = travelrep.getById(user.getTravel().getId());
+		String destinationO=travel.getDestination();
+		String stateO=travel.getState();
+		Date date1 = travel.getDate_begin();
+		Date date2 =travel.getDate_end();
+		List<Travel> travels = travelrep.retrievTravelbyspecificDate(date1, date2);
+		for(Travel t1:travels){
+			String destination1=t1.getDestination();
+			String state1=t1.getState();
+			if(!user.getId().equals(t1.getEmployee().getId())){
+				if(destinationO.equals(destination1)){
+					if(stateO.equals(state1)){
+						if(travel.getCompany().getDomain().getName().equals(t1.getCompany().getDomain().getName())){
+							Employee emp1 = t1.getEmployee();
+							matchedemp.add(emp1);
+						}
+					}
+				}
+				
+				
+			}
+			
+		}
+		
+		return matchedemp;
+	}
+
+	//compared to very specific date
+	@Override
+	public List<Travel> retrievTravelbyspecificDate(Date date1, Date date2) {
+		return (List<Travel>) travelrep.retrievTravelbyspecificDate(date1, date2);
+	}
 
 }

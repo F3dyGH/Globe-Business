@@ -1,5 +1,6 @@
 package tn.globebusiness.spring.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.globebusiness.spring.entity.Employee;
 import tn.globebusiness.spring.entity.Travel;
 import tn.globebusiness.spring.service.ITravelService;
 
@@ -54,6 +56,18 @@ public class TravelController {
 		return itravelserv.retrieveTravelById(id);
 		
 	}
+	@PostMapping("/updatetraveler/{id}/{id2}") 
+	@ResponseBody
+	public void Affecttraveler(@PathVariable long id ,@PathVariable long id2){
+		itravelserv.Affecttraveler(id, id2);
+	}
+	
+	@PostMapping("/addtravelandaffect/{id}") 
+	@ResponseBody
+	public void AddandAffectTravel(@RequestBody Travel travel,@PathVariable long id){
+		itravelserv.AddandAffectTravel(travel, id);
+	}
+	
 	
 	@GetMapping("/findbydestination/{destination}")
 	@ResponseBody
@@ -88,6 +102,26 @@ public class TravelController {
 	@ResponseBody
 	public List<Travel>findBydestinationAndStateAndcity(@PathVariable String destination ,@PathVariable String state,@PathVariable String city){
 		return itravelserv.findBydestinationAndStateAndCity(destination, state, city);
+		
+	}
+	
+	@GetMapping("/findTravelbyToday")
+	@ResponseBody
+	public List<Travel> findAllTravelbydate(){
+		return itravelserv.findAllTravelbydate();
+		
+	}
+	
+	@GetMapping("/findTravelbyspecificdate/{date1}/{date2}")
+	@ResponseBody
+	public List<Travel> retrievTravelbyspecificDate(@PathVariable ("date1")Date date1, @PathVariable ("date2") Date date2){
+		return itravelserv.retrievTravelbyspecificDate(date1, date2) ;
+	}
+	
+	@GetMapping("/travelmatching/{id}")
+	@ResponseBody
+	public List<Employee> Matching(@PathVariable long id){
+		return itravelserv.Matching(id);
 		
 	}
 
