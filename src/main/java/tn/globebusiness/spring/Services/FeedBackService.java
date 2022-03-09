@@ -70,13 +70,13 @@ public class FeedBackService implements IFeedBackService {
 
 	@Override
 	public List<Travel> trierTravelByFeedBacks() {
-		/*List<Travel> travels =new ArrayList<Travel>();
+		List<Travel> travels =new ArrayList<Travel>();
 		travels=(List<Travel>)tr.findAll();
 		if(!travels.isEmpty()){
-			//travels.sort((t1,t2)->t1.getFeedBacks().stream().mapToInt(f->f.getRating()).sum()) );
-		}*/
+			travels.sort((t1,t2)->-(t1.getFeedBacks().size()-t2.getFeedBacks().size()) );
+		}
 		
-		return tr.trierTravelByFeedBacks();
+		return travels;
 	}
 	
 }

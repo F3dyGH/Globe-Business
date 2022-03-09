@@ -1,5 +1,6 @@
 package tn.globebusiness.spring.Services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,10 +11,12 @@ import tn.globebusiness.spring.Entities.Comment;
 import tn.globebusiness.spring.Entities.Employee;
 import tn.globebusiness.spring.Entities.Likee;
 import tn.globebusiness.spring.Entities.Post;
+import tn.globebusiness.spring.Entities.Share;
 import tn.globebusiness.spring.Repositories.CommentRepository;
 import tn.globebusiness.spring.Repositories.EmployeeRepository;
 import tn.globebusiness.spring.Repositories.LikeRepositoy;
 import tn.globebusiness.spring.Repositories.PostRepository;
+import tn.globebusiness.spring.Repositories.ShareRepository;
 
 @Service
 public class PostService implements IPostService {
@@ -25,6 +28,8 @@ public class PostService implements IPostService {
 	LikeRepositoy lr;
 	@Autowired
 	CommentRepository cr;
+	@Autowired
+	ShareRepository sr;
 	@Override
 	public void addPost(Long idEmployee, Post post) {
 		Employee employee=er.findById(idEmployee).get();
@@ -134,6 +139,25 @@ public class PostService implements IPostService {
 			comment.setPost(commTest.getPost());
 		}
 		return cr.save(comment);
+	}
+	@Override
+	public Share sharePost(Long idEmployee1, Long idEmployee2, Long idPost) {
+		Share share=new Share();
+		share.setDateShare(new Date());
+		share.setEmployee1(er.findById(idEmployee1).get());
+		share.setEmployee2(er.findById(idEmployee2).get());
+		share.setPost(pr.findById(idPost).get());
+	    share.setMessage("votre ami "+er.findById(idEmployee1).get().getName()+" a partagé avec vous ce Post");
+		return sr.save(share);
+	}
+	@Override
+	public List<Post> myFriendPost(Long idEmployee2) {
+		List<Share> shares=sr.myFriendPost(er.findById(idEmployee2).get());
+		List<Post> posts=new ArrayList<Post>();
+		for(Share s:shares){
+			posts.add(s.getPost());
+		}
+		return posts;
 	}
 	
 	

@@ -27,6 +27,7 @@ public class Complaint implements Serializable {
 	private String title;
 	@Column(name ="description")
 	private String description;
+	private int etat;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date feedbackDate;
 	@ManyToOne

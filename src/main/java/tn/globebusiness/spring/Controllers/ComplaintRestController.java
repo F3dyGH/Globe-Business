@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.globebusiness.spring.Entities.Complaint;
+import tn.globebusiness.spring.Entities.NotifComplaint;
 import tn.globebusiness.spring.Services.IComplaintService;
 
 @RestController
@@ -47,6 +48,15 @@ public class ComplaintRestController {
     @GetMapping("/Travelcomplaints")
     public List<Complaint> displayAllTravelComplaints(@RequestParam("idTravel") Long idTravel){
         return ics.displayAllTravelComplaints(idTravel);
+    }
+    
+    @PostMapping("traiterReclamation")
+    public String traiterReclamation(@RequestParam("idReclamation") Long idReclamation,@RequestBody NotifComplaint nf){
+    	return ics.traiterReclamation(idReclamation, nf);
+    }
+    @GetMapping("afficherNotifPourEmployee")
+    public List<NotifComplaint> afficherNotifPourEmployee(@RequestParam("idEmployee") Long idEmployee){
+    	return ics.afficherNotifPourEmployee(idEmployee);
     }
 }
 

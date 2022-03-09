@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.globebusiness.spring.Entities.Comment;
 import tn.globebusiness.spring.Entities.Likee;
 import tn.globebusiness.spring.Entities.Post;
+import tn.globebusiness.spring.Entities.Share;
 import tn.globebusiness.spring.Repositories.LikeRepositoy;
 import tn.globebusiness.spring.Services.IPostService;
 
@@ -88,6 +89,15 @@ public class PostRestController  {
 	}
 	
 	
+	@PostMapping("sharePost")
+	public Share sharePost(@RequestParam("idEmployee1")Long idEmployee1,@RequestParam("idEmployee2") Long idEmployee2,@RequestParam("idPost") Long idPost){
+		return ips.sharePost(idEmployee1, idEmployee2, idPost);
+	}
+	
+	@GetMapping("myFriendPost")
+	public List<Post> myFriendPost(@RequestParam("idEmployee2")Long idEmployee2){
+		return ips.myFriendPost(idEmployee2);
+	}
 	
 	
 	
