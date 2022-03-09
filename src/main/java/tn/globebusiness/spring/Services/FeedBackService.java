@@ -1,13 +1,12 @@
 package tn.globebusiness.spring.Services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.globebusiness.spring.Entities.Comment;
-import tn.globebusiness.spring.Entities.Complaint;
 import tn.globebusiness.spring.Entities.Employee;
 import tn.globebusiness.spring.Entities.FeedBack;
 import tn.globebusiness.spring.Entities.Travel;
@@ -67,6 +66,17 @@ public class FeedBackService implements IFeedBackService {
 			feedBacks.sort((p1,p2)-> (p1.getFeedbackDateAndTime().compareTo(p2.getFeedbackDateAndTime())));
 		}
 		return feedBacks;
+	}
+
+	@Override
+	public List<Travel> trierTravelByFeedBacks() {
+		/*List<Travel> travels =new ArrayList<Travel>();
+		travels=(List<Travel>)tr.findAll();
+		if(!travels.isEmpty()){
+			//travels.sort((t1,t2)->t1.getFeedBacks().stream().mapToInt(f->f.getRating()).sum()) );
+		}*/
+		
+		return tr.trierTravelByFeedBacks();
 	}
 	
 }

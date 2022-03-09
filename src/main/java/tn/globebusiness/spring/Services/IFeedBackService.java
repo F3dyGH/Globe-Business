@@ -3,6 +3,7 @@ package tn.globebusiness.spring.Services;
 import java.util.List;
 
 import tn.globebusiness.spring.Entities.FeedBack;
+import tn.globebusiness.spring.Entities.Travel;
 
 public interface IFeedBackService {
 	FeedBack addFeedback(FeedBack f,Long idEmployee,Long idTravel);
@@ -19,6 +20,6 @@ public interface IFeedBackService {
 	
 	List<FeedBack> displayAllTravelFeedBack(Long idTravel);
 	
-	
+	List<Travel> trierTravelByFeedBacks();
 	
 }
