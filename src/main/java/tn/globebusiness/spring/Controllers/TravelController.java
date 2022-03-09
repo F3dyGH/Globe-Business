@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.controller;
+package tn.globebusiness.spring.Controllers;
 
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.globebusiness.spring.entity.Employee;
-import tn.globebusiness.spring.entity.Travel;
-import tn.globebusiness.spring.service.ITravelService;
+import tn.globebusiness.spring.Entities.Employee;
+import tn.globebusiness.spring.Entities.Travel;
+import tn.globebusiness.spring.Services.ITravelService;
 
 @RestController
 @RequestMapping("/travelcontrol")

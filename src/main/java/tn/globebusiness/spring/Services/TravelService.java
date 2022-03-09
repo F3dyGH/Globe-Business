@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.service;
+package tn.globebusiness.spring.Services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import tn.globebusiness.spring.entity.Employee;
-import tn.globebusiness.spring.entity.Travel;
-import tn.globebusiness.spring.repository.EmployeeRepository;
-import tn.globebusiness.spring.repository.TravelRepository;
-import tn.globebusiness.spring.service.ITravelService;
+import tn.globebusiness.spring.Entities.Employee;
+import tn.globebusiness.spring.Entities.Travel;
+import tn.globebusiness.spring.Repositories.EmployeeRepository;
+import tn.globebusiness.spring.Repositories.TravelRepository;
+import tn.globebusiness.spring.Services.ITravelService;
 
 @Service
 public class TravelService implements ITravelService {

@@ -1,6 +1,6 @@
-package tn.globebusiness.spring.service;
+package tn.globebusiness.spring.Services;
 
-import tn.globebusiness.spring.entity.Employee;
+import tn.globebusiness.spring.Entities.Employee;
 
 public interface IEmployeeService {
 	//public Employee UpdateEmployee(String employeeName, Employee employee, Employee newEmployee);

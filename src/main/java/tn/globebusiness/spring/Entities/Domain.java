@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.entity;
+package tn.globebusiness.spring.Entities;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

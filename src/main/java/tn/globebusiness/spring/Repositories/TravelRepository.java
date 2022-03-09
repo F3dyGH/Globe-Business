@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.repository;
+package tn.globebusiness.spring.Repositories;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tn.globebusiness.spring.entity.Travel;
+import tn.globebusiness.spring.Entities.Travel;
 
 @Repository
 public interface TravelRepository  extends JpaRepository <Travel , Long>{

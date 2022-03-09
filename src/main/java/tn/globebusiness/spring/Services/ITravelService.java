@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.service;
+package tn.globebusiness.spring.Services;
 
 import java.util.Date;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import org.springframework.data.repository.query.Param;
 
-import tn.globebusiness.spring.entity.Employee;
-import tn.globebusiness.spring.entity.Travel;
+import tn.globebusiness.spring.Entities.Employee;
+import tn.globebusiness.spring.Entities.Travel;
 
 public interface ITravelService {
 	public void addTravel(Travel travel);

@@ -1,4 +1,4 @@
-package tn.globebusiness.spring.entity;
+package tn.globebusiness.spring.Entities;
 
 import java.util.Date;
 
@@ -32,6 +32,7 @@ public class Travel {
 	private String city;
 	private Date date_end ;
 	private String objective ;
+	
 	
 	@ManyToOne
 	private Company company;
